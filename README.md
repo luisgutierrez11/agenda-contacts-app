@@ -44,7 +44,7 @@ El frontend está desarrollado con **React** y utiliza **Material UI** para los 
 ![Dashboard](./screenshots/dashboard.png)
 ![Dashboard](./screenshots/dashboard2.png)
 
-### Agregar gasto
+### Agregar contacto
 
 ![Add expense](./screenshots/add-contact.png)
 
