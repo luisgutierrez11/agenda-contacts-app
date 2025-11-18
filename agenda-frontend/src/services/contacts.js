@@ -2,8 +2,11 @@ import axios from "axios"
 
 // URL base del backend para las operaciones relacionadas con los contactos.
 // Durante el desarrollo apunta a localhost, pero en producción puede configurarse
-// con una variable de entorno (por ejemplo: import.meta.env.VITE_API_URL).
-const baseUrl = '/api/contacts'
+// con una variable de entorno.
+// const baseUrl = '/api/contacts'
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+})
 
 /**
  * getAll:
@@ -12,7 +15,7 @@ const baseUrl = '/api/contacts'
  * @returns {Promise<Array>} Promesa que resuelve con el array de contactos.
  */
 const getAll = async () => {
-    const response = await axios.get(baseUrl)
+    const response = await api.get('/api/contacts')
     return response.data
 }
 
@@ -24,7 +27,7 @@ const getAll = async () => {
  * @returns {Promise<Object>} Promesa que resuelve con el contacto creado.
  */
 const create = async (newContact) => {
-    const response = await axios.post(baseUrl, newContact)
+    const response = await api.post('/api/contacts', newContact)
     return response.data
 }
 
@@ -37,7 +40,7 @@ const create = async (newContact) => {
  * @returns {Promise<Object>} Promesa que resuelve con el contacto actualizado.
  */
 const update = async (id, updatedContact) => {
-    const response = await axios.put(`${baseUrl}/${id}`, updatedContact)
+    const response = await api.put(`/api/contacts/${id}`, updatedContact)
     return response.data
 }
 
@@ -49,7 +52,7 @@ const update = async (id, updatedContact) => {
  * @returns {Promise<Object>} Promesa que resuelve con la respuesta del servidor.
  */
 const remove = async id => {
-    const response = await axios.delete(`${baseUrl}/${id}`)
+    const response = await api.delete(`/api/contacts/${id}`)
     return response.data
 }
 
